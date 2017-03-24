@@ -7,10 +7,11 @@ API_URL = "https://www.menti.com/api/"
 
 class MentiFlooder:
 
-    def __init__(self, vote_id):
+    def __init__(self, vote_id, loop_nbr=-1, *args, **kwargs):
         _ = int(vote_id) # check is_digit or raise ValueError
-        self.vote_id = vote_id
+        self.loop_nbr = loop_nbr # if self.loop_nbr <= 0 loop forever
         self.questions = None
+        self.vote_id = vote_id
 
     @property
     def identifier(self):
@@ -46,5 +47,10 @@ class MentiFlooder:
     def send_responses(self):
         for question in self.questions:
             self.send_response(question)
+
+    def flood(self):
+        while self.loop_nbr:
+            self.loop_nbr -= 1
+            self.send_responses()
 
 __all__ = ["MentiFlooder"]
