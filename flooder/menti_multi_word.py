@@ -19,6 +19,6 @@ class MentiMulitWord(BaseMentiQuestion):
         self.dictionary = get_dict()
 
     def flood(self):
-        return sample(self.dictionary, self.max_nb_words)
+        return ' '.join(sample(self.dictionary, self.max_nb_words))
 
 __all__ = ["MentiMulitWord"]
