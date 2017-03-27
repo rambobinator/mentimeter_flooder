@@ -1,11 +1,17 @@
+from random import choice
+
 from .base_menti_question import BaseMentiQuestion
 
 class MentiHundredPoints(BaseMentiQuestion):
-    # choices
-    # property len(choices)
-    # max int 100
-    # inc += 10
-    # dec -= 10
-    pass
+
+    needed_attr = ["choices"]
+    max_value = 100
+    step_value = 10
+
+    def __init__(self, params=None):
+        super().__init__(params)
+
+    def flood(self):
+        return {choice(self.choices).get("id"): self.max_value}
 
 __all__ = ["MentiHundredPoints"]
